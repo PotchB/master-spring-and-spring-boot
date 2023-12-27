@@ -27,6 +27,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- <version>3.2.1</version>	
+				we can already remove the version because the parent already indicates the version -->
+		</dependency>
 	</dependencies>
 
 	<build>
