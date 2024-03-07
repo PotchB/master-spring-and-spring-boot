@@ -67,6 +67,7 @@
 			<version>11.0.19</version>
 		</dependency>
 
+		
 		<!--  #####  For Static Content: Bootstrap and jQuery Dependencies  #####  -->
 		<!-- In the case of Static Content, all versions are not managed by Spring Boot Starter Parent, so we need to specify the versions -->
 		<!-- Bootstrap Dependency -->
