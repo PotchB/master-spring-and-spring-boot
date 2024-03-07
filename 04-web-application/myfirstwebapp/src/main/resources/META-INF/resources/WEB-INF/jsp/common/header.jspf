@@ -1,0 +1,35 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- To Configure a Form Backing Object to bind an object from TodoController  -->
+<!-- Search Google for "Spring For Tag Library Documentation" -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Your Todos</title>
+
+    <link href="webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap DatePicker -->
+    <link href="webjars/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
+
+    <style>
+        /* Custom class for max-width of 400px */
+        .max-width-400px {
+            max-width: 400px;
+            /* You can add more styles if needed */
+        }
+
+        .btn-form {
+            margin-top: 1rem;
+        }
+
+        label {
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>

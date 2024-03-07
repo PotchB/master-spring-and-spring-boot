@@ -1,0 +1,79 @@
+package com.devpob.myfirstwebapp.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import com.devpob.myfirstwebapp.pojo.AppUser;
+import com.devpob.myfirstwebapp.pojo.Role;
+
+@Configuration
+public class SpringSecurityConfiguration {
+    // Typically, when storing usernames and passwords, you'd make use of LDAP or Database
+    // To keep things simple, we'll make use of InMemory configurator, for now
+
+    // LDAP or Database
+    // In Memory
+
+    // InMemoryUserDetailsManager
+    // InMemoryUserDetailsManager(UserDetails... users)
+    @Bean
+    public InMemoryUserDetailsManager createUserDetailsManager() {
+        // UserDetails userDetails = User.withDefaultPasswordEncoder()  //  withDefaultPasswordEncoder() is not the recommended approach for securing your app. We need BCryptPasswordEncoder for that. Create a Bean out of it.
+        //     .username("devpob")
+        //     .password("dummy")
+        //     .roles("USER", "ADMIN")
+        //     .build();
+
+        // Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
+        // userdetails build with BCryptPasswordEncoder
+        
+        // UserDetails user = User.builder()
+        //                         .username("in28minutes")
+        //                         .password(passwordEncoder().encode("dummy"))
+        //                         .roles(userRole)
+        //                         .build();
+
+        // OR
+        /* Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
+        UserDetails userDetails = User.builder()
+                                        .passwordEncoder(passwordEncoder)
+                                        .username("devpob")
+                                        .password("dummy")
+                                        .roles("USER","ADMIN")
+                                        .build(); */
+
+        // REFACTORED to follow D-R-Y
+        AppUser user1 = new AppUser("devpob", "dummy", Role.ADMIN);
+        AppUser user2 = new AppUser("in28minutes", "dummy", Role.USER);
+
+        UserDetails userDetails1 = createNewUser(user1);
+        UserDetails userDetails2 = createNewUser(user2);
+
+        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
+    }
+
+    private UserDetails createNewUser(AppUser appUser) {
+        UserDetails userDetails = User.builder()
+                                .username(appUser.getUsername())
+                                .password(passwordEncoder().encode(appUser.getPassword()))
+                                .roles(appUser.getRole().toString())
+                                .build();
+        return userDetails;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    // OR
+    // @Bean
+    // public BCryptPasswordEncoder passwordEncoder() {
+    //     return new BCryptPasswordEncoder();
+    // }
+}

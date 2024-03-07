@@ -1,0 +1,12 @@
+SELECT * FROM course;
+
+INSERT INTO course (id, name, author) VALUES
+    (1, 'Learn AWS', 'devpob'),
+    (2, 'Learn DevOps', 'devpob'),
+    (3, 'Learn Spring Boot', 'devpob');
+
+SELECT * FROM course;
+
+DELETE FROM course WHERE id = 1;
+
+DELETE FROM course;
